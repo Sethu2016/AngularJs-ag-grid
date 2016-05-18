@@ -5,11 +5,43 @@
     <meta charset="utf-8" />
     <title>TypeScript HTML App</title>
     <link rel="stylesheet" href="app.css" type="text/css" />
-    <script src="app.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="bower_components/ag-grid/dist/ag-grid.js"></script>
+    <script src="bower_components/system.js/dist/system.src.js"></script>
+    <!--<script src="bower_components/requirejs/require.js" ></script>-->
+    <script>
+      System.config({
+          defaultJSExtensions: true
+      });
+      System
+        .import("Scripts/TestGrid/boot");
+    </script>
+    
+    <script src="Scripts/TestGrid/App.js"></script>
+   
+
+    <!--<script>
+        System.config({
+            transpiler: 'typescript',
+            packages: {
+                src: {
+                    defaultExtension: 'ts'
+                }
+            }
+        });
+        
+        System
+        .import('bower_components/ag-grid/main.d.ts')
+        .then(null, console.error.bind(console));
+    
+    </script>-->
 </head>
 <body>
     <h1>TypeScript HTML App</h1>
 
-    <div id="content"></div>
+    <div id="content" ng-app="TestGridApp" ng-controller="TestGridApp.gridController as GCT">
+        <div ag-grid="GCT.gridOptions" class="ag-fresh" style="height: 100%;"></div>
+
+    </div>
 </body>
 </html>

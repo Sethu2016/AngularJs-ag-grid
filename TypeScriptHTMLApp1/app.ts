@@ -12,6 +12,7 @@ module App {
 
         constructor(appModule: string, dependencies: Array<string>) {
             this.AppModule = angular.module(appModule, dependencies);
+
         }
 
     }
