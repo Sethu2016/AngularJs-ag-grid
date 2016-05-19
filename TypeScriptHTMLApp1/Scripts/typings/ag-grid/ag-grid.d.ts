@@ -994,6 +994,9 @@ declare namespace ag.grid {
 declare namespace ag.grid {
     function groupCellRendererFactory(gridOptionsWrapper: GridOptionsWrapper, selectionRendererFactory: SelectionRendererFactory, expressionService: ExpressionService): (params: any) => HTMLSpanElement;
 }
+declare namespace agGrid {
+    function initialiseAgGridWithAngular1(angular: any): void;
+}
 declare namespace ag.grid {
     class RowRenderer {
         private columnModel;

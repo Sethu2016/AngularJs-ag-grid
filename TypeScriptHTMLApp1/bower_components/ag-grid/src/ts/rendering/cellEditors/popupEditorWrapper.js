@@ -1,58 +1,53 @@
-System.register(["../../widgets/component"], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
-    var component_1;
-    var PopupEditorWrapper;
-    return {
-        setters:[
-            function (component_1_1) {
-                component_1 = component_1_1;
-            }],
-        execute: function() {
-            class PopupEditorWrapper extends component_1.Component {
-                constructor(cellEditor) {
-                    super('<div class="ag-popup-editor"/>');
-                    this.getGuiCalledOnChild = false;
-                    this.cellEditor = cellEditor;
-                    this.addDestroyFunc(() => cellEditor.destroy());
-                    this.addDestroyableEventListener(
-                    // this needs to be 'super' and not 'this' as if we call 'this',
-                    // it ends up called 'getGui()' on the child before 'init' was called,
-                    // which is not good
-                    super.getGui(), 'keydown', this.onKeyDown.bind(this));
-                }
-                onKeyDown(event) {
-                    this.params.onKeyDown(event);
-                }
-                getGui() {
-                    // we call getGui() on child here (rather than in the constructor)
-                    // as we should wait for 'init' to be called on child first.
-                    if (!this.getGuiCalledOnChild) {
-                        this.appendChild(this.cellEditor.getGui());
-                        this.getGuiCalledOnChild = true;
-                    }
-                    return super.getGui();
-                }
-                init(params) {
-                    this.params = params;
-                    if (this.cellEditor.init) {
-                        this.cellEditor.init(params);
-                    }
-                }
-                afterGuiAttached() {
-                    if (this.cellEditor.afterGuiAttached) {
-                        this.cellEditor.afterGuiAttached();
-                    }
-                }
-                getValue() {
-                    return this.cellEditor.getValue();
-                }
-                isPopup() {
-                    return true;
-                }
-            }
-            exports_1("PopupEditorWrapper", PopupEditorWrapper);
-        }
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var component_1 = require("../../widgets/component");
+var PopupEditorWrapper = (function (_super) {
+    __extends(PopupEditorWrapper, _super);
+    function PopupEditorWrapper(cellEditor) {
+        _super.call(this, '<div class="ag-popup-editor"/>');
+        this.getGuiCalledOnChild = false;
+        this.cellEditor = cellEditor;
+        this.addDestroyFunc(function () { return cellEditor.destroy(); });
+        this.addDestroyableEventListener(
+        // this needs to be 'super' and not 'this' as if we call 'this',
+        // it ends up called 'getGui()' on the child before 'init' was called,
+        // which is not good
+        _super.prototype.getGui.call(this), 'keydown', this.onKeyDown.bind(this));
     }
-});
+    PopupEditorWrapper.prototype.onKeyDown = function (event) {
+        this.params.onKeyDown(event);
+    };
+    PopupEditorWrapper.prototype.getGui = function () {
+        // we call getGui() on child here (rather than in the constructor)
+        // as we should wait for 'init' to be called on child first.
+        if (!this.getGuiCalledOnChild) {
+            this.appendChild(this.cellEditor.getGui());
+            this.getGuiCalledOnChild = true;
+        }
+        return _super.prototype.getGui.call(this);
+    };
+    PopupEditorWrapper.prototype.init = function (params) {
+        this.params = params;
+        if (this.cellEditor.init) {
+            this.cellEditor.init(params);
+        }
+    };
+    PopupEditorWrapper.prototype.afterGuiAttached = function () {
+        if (this.cellEditor.afterGuiAttached) {
+            this.cellEditor.afterGuiAttached();
+        }
+    };
+    PopupEditorWrapper.prototype.getValue = function () {
+        return this.cellEditor.getValue();
+    };
+    PopupEditorWrapper.prototype.isPopup = function () {
+        return true;
+    };
+    return PopupEditorWrapper;
+}(component_1.Component));
+exports.PopupEditorWrapper = PopupEditorWrapper;
 //# sourceMappingURL=popupEditorWrapper.js.map

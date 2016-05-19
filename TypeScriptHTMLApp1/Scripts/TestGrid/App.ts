@@ -1,10 +1,8 @@
-﻿/// <reference path="../../bower_components/ag-grid/dist/lib/components/aggridng1.d.ts" />
-/// <reference path="../../bower_components/ag-grid/main.d.ts" />
-import {initialiseAgGridWithAngular1} from '../../bower_components/ag-grid/dist/lib/components/aggridng1'
+﻿
 
 module TestGridApp{
 
-    initialiseAgGridWithAngular1(angular);
+    agGrid.initialiseAgGridWithAngular1(angular);
     angular.module('TestGridApp', ['agGrid']);
 
 
@@ -41,4 +39,7 @@ module TestGridApp{
         .controller('TestGridApp.gridController', GridController);
 
 
+    module TestGridApp.Directives {
+        
+    }
 }

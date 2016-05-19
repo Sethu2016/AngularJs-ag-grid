@@ -1,21 +1,19 @@
-System.register(["./selectCellEditor"], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
-    var selectCellEditor_1;
-    var PopupSelectCellEditor;
-    return {
-        setters:[
-            function (selectCellEditor_1_1) {
-                selectCellEditor_1 = selectCellEditor_1_1;
-            }],
-        execute: function() {
-            class PopupSelectCellEditor extends selectCellEditor_1.SelectCellEditor {
-                isPopup() {
-                    return true;
-                }
-            }
-            exports_1("PopupSelectCellEditor", PopupSelectCellEditor);
-        }
+"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var selectCellEditor_1 = require("./selectCellEditor");
+var PopupSelectCellEditor = (function (_super) {
+    __extends(PopupSelectCellEditor, _super);
+    function PopupSelectCellEditor() {
+        _super.apply(this, arguments);
     }
-});
+    PopupSelectCellEditor.prototype.isPopup = function () {
+        return true;
+    };
+    return PopupSelectCellEditor;
+}(selectCellEditor_1.SelectCellEditor));
+exports.PopupSelectCellEditor = PopupSelectCellEditor;
 //# sourceMappingURL=popupSelectCellEditor.js.map
